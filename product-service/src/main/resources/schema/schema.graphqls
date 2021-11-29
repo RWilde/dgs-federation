@@ -1,0 +1,10 @@
+type Query {
+    product: Product!
+    products: [Product!]!
+}
+
+type Product @key(fields: "sku") {
+    sku: ID!
+    name: String!
+    description: String!
+}

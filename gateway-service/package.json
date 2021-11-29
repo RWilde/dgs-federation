@@ -1,0 +1,18 @@
+{
+  "name": "gateway-service",
+  "version": "1.0.0",
+  "scripts": {
+    "start-gateway": "node gateway.js"
+  },
+  "dependencies": {
+    "@apollo/gateway": "latest",
+    "apollo-server": "latest",
+    "graphql": "latest"
+  },
+  "main": "gateway.js",
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

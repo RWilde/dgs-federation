@@ -1,0 +1,13 @@
+spring:
+  data:
+    mongodb:
+      database: cart-repo
+      host: localhost
+      port: 27017
+
+graphiql:
+  enabled: true
+  subscriptions:
+    timeout: 300000
+  graphiql:
+    enabled: true

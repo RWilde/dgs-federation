@@ -1,0 +1,37 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id "com.netflix.dgs.codegen" version "5.1.9"
+}
+
+group = 'poc.graphql'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation('org.mongodb:mongo-java-driver:3.12.10')
+    implementation 'com.google.code.gson:gson:2.8.9'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release"))
+    implementation "com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter"
+    implementation 'org.springframework.data:spring-data-mongodb-parent:3.3.0'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:2.5.6'
+    implementation 'org.springframework.data:spring-data-mongodb:3.3.0'
+}
+
+//generateJava{
+//	schemaPaths = ["${projectDir}/src/main/resources/schema"] // List of directories containing schema files
+//	packageName = 'com.thesting.cart' // The package name to use to generate sources
+//	generateClient = true // Enable generating the type safe query API
+//}
+
+//test {
+//	useJUnitPlatform()
+//}

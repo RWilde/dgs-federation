@@ -1,0 +1,57 @@
+type Query {
+    cart(cartId: String): Cart!
+    carts: [Cart!]!
+}
+
+type Mutation {
+    createCart(cart: CreateCart): Cart
+    updateCart(cart: UpdateCart): Cart!
+    deleteCart(cartId: String): Boolean!
+}
+
+type Cart {
+    id: ID!
+    name: String!
+    items: [Product]!
+    purpose: Purpose!
+    createTime: String!
+    updateTime: String!
+    shareCode: Int!
+}
+
+type User @key(fields: "id") @extends {
+    id: ID! @external
+    carts: [Cart]!
+}
+
+type Product @key(fields: "sku") @extends {
+    sku: ID! @external
+    quantity: Int!
+}
+
+enum Purpose {
+    CART, WISHLIST
+}
+
+input CreateCart {
+    name: String!
+    items: [Item]!
+    purpose: Purpose!
+}
+
+input UpdateCart {
+    id: String
+    name: String
+    items: [Item]
+    purpose: Purpose
+}
+
+input Item {
+    sku: String
+    quantity: Int
+}
+
+type CartItem {
+    sku: String
+    quantity: Int
+}

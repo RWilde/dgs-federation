@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class DummyCartRepository {
-    private final HashMap<String, ArrayList<Cart>> carts = new HashMap<String, ArrayList<Cart>>();
+    private final HashMap<String, ArrayList<Cart>> carts = new HashMap<>();
     private final Gson gson = new Gson();
     List<Product> items = List.of(new Product("sku123", 1), new Product("sku124", 2));
 
@@ -37,7 +37,7 @@ public class DummyCartRepository {
     public Cart save(Cart cart, String userId) {
         var userCarts = carts.get(userId);
         userCarts.add(cart);
-        var returnedCard = carts.put(userId, userCarts);
+        carts.put(userId, userCarts);
         return cart;
     }
 

@@ -1,9 +1,9 @@
 package com.thesting.cart.fetchers;
 
-import com.netflix.dgs.codgen.generated.types.Cart;
-import com.netflix.dgs.codgen.generated.types.User;
 import com.netflix.graphql.dgs.*;
 import com.thesting.cart.service.CartService;
+import com.thesting.cart.types.Cart;
+import com.thesting.cart.types.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestHeader;
 

@@ -1,7 +1,7 @@
 package com.thesting.cart.service;
 
-import com.netflix.dgs.codgen.generated.types.Cart;
-import com.netflix.dgs.codgen.generated.types.Product;
+import com.thesting.cart.types.Cart;
+import com.thesting.cart.types.Product;
 
 import java.util.List;
 

@@ -1,10 +1,10 @@
 package com.thesting.cart.repository;
 
 import com.google.gson.Gson;
-import com.netflix.dgs.codgen.generated.types.Cart;
-import com.netflix.dgs.codgen.generated.types.Item;
-import com.netflix.dgs.codgen.generated.types.Product;
-import com.netflix.dgs.codgen.generated.types.Purpose;
+import com.thesting.cart.types.Cart;
+import com.thesting.cart.types.Item;
+import com.thesting.cart.types.Product;
+import com.thesting.cart.types.Purpose;
 
 import java.util.ArrayList;
 import java.util.Arrays;

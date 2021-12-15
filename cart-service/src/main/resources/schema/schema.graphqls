@@ -1,3 +1,5 @@
+directive @secured(requires : String!) on FIELD_DEFINITION | OBJECT
+
 type Query {
     cart(cartId: String): Cart!
     carts: [Cart!]!
@@ -5,8 +7,8 @@ type Query {
 
 type Mutation {
     createCart(cart: CreateCart): Cart
-    updateCart(cart: UpdateCart): Cart!
-    deleteCart(cartId: String): Boolean!
+    updateCart(cart: UpdateCart): Cart! @secured(requires : "@authFunction.validUserToken(#userUuid")
+    deleteCart(cartId: String): Boolean! @secured(requires : "@authFunction.validUserToken(#userUuid")
 }
 
 type Cart {
@@ -17,12 +19,15 @@ type Cart {
     createTime: String!
     updateTime: String!
     shareCode: Int!
+#    cartToken: String @secured(requires : "@authFunction.hasOffer(#userUuid,'VIDEO','play')")
 }
 
 type User @key(fields: "id") @extends {
-    id: ID! @external
+    id: UUID! @external
     carts: [Cart]!
 }
+
+scalar UUID
 
 type Product @key(fields: "sku") @extends {
     sku: ID! @external

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @DgsComponent
 public class CartDataFetcher {
@@ -36,7 +37,7 @@ public class CartDataFetcher {
     public User user(Map<String, Object> values) {
         String id = (String) values.get("id");
 
-        return new User(id, cartService.findAllByUserId(id));
+        return new User(UUID.fromString(id), cartService.findAllByUserId(id));
     }
 
 

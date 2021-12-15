@@ -1,11 +1,6 @@
-
 graphiql:
   enabled: true
   subscriptions:
     timeout: 300000
   graphiql:
     enabled: true
-dgs:
-  graphql:
-        schema-locations:
-          - classpath*:schemas/*.graphql*

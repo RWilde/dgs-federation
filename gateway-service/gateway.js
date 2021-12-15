@@ -16,7 +16,7 @@ const gateway = new ApolloGateway({
         // using a single source of truth to compose a schema is recommended and
         // prevents composition failures at runtime using schema validation using
         // real usage-based metrics.
-        { name: "Carts", url: "http://localhost:5003/graphql" },
+        { name: "Carts", url: "http://localhost:5002/graphql" },
         { name: "Products", url: "http://localhost:5004/graphql" },
         { name: "Users", url: "http://localhost:5005/graphql" },
 

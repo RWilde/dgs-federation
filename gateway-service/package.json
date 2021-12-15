@@ -7,10 +7,10 @@
   "dependencies": {
     "@apollo/gateway": "latest",
     "apollo-server": "latest",
+    "express-jwt": "^6.1.0",
     "graphql": "latest"
   },
   "main": "gateway.js",
-  "devDependencies": {},
   "keywords": [],
   "author": "",
   "license": "ISC",

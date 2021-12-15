@@ -1,5 +1,7 @@
+directive @secured(requires : String!) on FIELD_DEFINITION | OBJECT
+
 type Query {
-    user: User!
+    user (id: String): User! @secured(requires : "@authFunction.validUserToken(#userUuid)")
     users: [User!]!
 }
 
@@ -7,7 +9,9 @@ type Mutation {
     createUser(username: String): User!
 }
 
+scalar UUID
+
 type User @key(fields: "id") {
-    id: ID!
+    id: UUID!
     username: String!
 }

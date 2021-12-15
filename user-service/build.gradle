@@ -14,24 +14,30 @@ repositories {
 }
 
 dependencies {
+    implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release"))
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-extended-scalars'
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation('org.mongodb:mongo-java-driver:3.12.10')
-    implementation 'com.google.code.gson:gson:2.8.9'
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.security:spring-security-core'
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release"))
-    implementation "com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter"
     implementation 'org.springframework.data:spring-data-mongodb-parent:3.3.0'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:2.5.6'
     implementation 'org.springframework.data:spring-data-mongodb:3.3.0'
 }
-
-//generateJava{
-//	schemaPaths = ["${projectDir}/src/main/resources/schema"] // List of directories containing schema files
-//	packageName = 'com.thesting.cart' // The package name to use to generate sources
-//	generateClient = true // Enable generating the type safe query API
-//}
-
+build {
+    generateJava {
+        schemaPaths = ["${projectDir}/src/main/resources/schema"] // List of directories containing schema files
+        packageName = 'com.thesting.user' // The package name to use to generate sources
+        generateClient = true // Enable generating the type safe query API
+        typeMapping = ["UUID": "java.util.UUID"]
+    }
+}
 //test {
 //	useJUnitPlatform()
 //}

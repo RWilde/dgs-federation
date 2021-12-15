@@ -6,13 +6,10 @@ import com.thesting.cart.types.Item;
 import com.thesting.cart.types.Product;
 import com.thesting.cart.types.Purpose;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class DummyCartRepository {
-    private final HashMap<String, ArrayList<Cart>> carts = new HashMap<>();
+    private final HashMap<UUID, ArrayList<Cart>> carts = new HashMap<>();
     private final Gson gson = new Gson();
     List<Product> items = List.of(new Product("sku123", 1), new Product("sku124", 2));
 
@@ -22,8 +19,8 @@ public class DummyCartRepository {
         ArrayList<Cart> cartList = new ArrayList<>(Arrays.asList(cart.id("1").name("cart").purpose(Purpose.CART).items(items).build()));
         ArrayList<Cart> wishList = new ArrayList<>(Arrays.asList(cart.id("2").name("wishlist").purpose(Purpose.WISHLIST).items(items).build(), cart.name("cart").purpose(Purpose.CART).items(items).build()));
 
-        carts.put("1", cartList);
-        carts.put("2", wishList);
+        carts.put(UUID.fromString("a18c0991-eb8f-319a-84bf-57d48cbd543c"), cartList);
+        carts.put(UUID.fromString("a18c0991-eb8f-319a-84bf-57d48cbd543b"), wishList);
     }
 
     public Cart findById(String id) {
@@ -31,13 +28,13 @@ public class DummyCartRepository {
     }
 
     public List<Cart> findAllByUserId(String id) {
-        return carts.get(id);
+        return carts.get(UUID.fromString("a18c0991-eb8f-319a-84bf-57d48cbd543c"));
     }
 
     public Cart save(Cart cart, String userId) {
         var userCarts = carts.get(userId);
         userCarts.add(cart);
-        carts.put(userId, userCarts);
+        carts.put(UUID.fromString("a18c0991-eb8f-319a-84bf-57d48cbd543c"), userCarts);
         return cart;
     }
 

@@ -2,8 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.6.1'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
-    id "com.netflix.dgs.codegen" version "5.1.9"
-    id 'org.springframework.experimental.aot' version '0.11.0-RC1'
+    id("com.netflix.dgs.codegen") version "5.1.11"
 }
 
 group = 'poc.graphql'
@@ -11,38 +10,31 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
-    maven { url 'https://repo.spring.io/milestone' }
     mavenCentral()
 }
 
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation "com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter"
-    implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release"))
-    implementation 'com.graphql-java:graphql-java:16.2'
+    implementation("com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter")
+    implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:4.9.11"))
+    implementation("com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter")
+
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     implementation 'com.google.code.gson:gson:2.8.9'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-generateJava{
-	schemaPaths = ["${projectDir}/src/main/resources/schema"] // List of directories containing schema files
-	packageName = 'com.thesting.cart' // The package name to use to generate sources
-	generateClient = true // Enable generating the type safe query API
+build {
+    generateJava {
+        schemaPaths = ["${projectDir}/src/main/resources/schema"] // List of directories containing schema files
+        packageName = 'com.thesting.cart' // The package name to use to generate sources
+        generateClient = true // Enable generating the type safe query API
+        typeMapping = ["UUID": "java.util.UUID"]
+    }
 }
-
-bootBuildImage{
-    builder = "paketobuildpacks/builder:tiny"
-    environment = [
-            "BP_NATIVE_IMAGE" : "true",
-            "BP_NATIVE_IMAGE_BUILD_ARGUMENTS" : "-H:Log=registerResource:3"
-    ]
-}
-//nativeBuild{
-//    classpath(processAotResources.outputs, compileAotJava.outputs)
-//}
-
 //test {
 //	useJUnitPlatform()
 //}

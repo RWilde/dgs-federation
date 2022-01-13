@@ -1,0 +1,5 @@
+entrypoint: gradle
+dir: dgs-federation/product-service
+args:
+  - jib
+  - --image=gcr.io/kub-demo-337910/product-service

@@ -3,6 +3,8 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id "com.netflix.dgs.codegen" version "5.1.9"
+    id 'com.google.cloud.tools.jib' version '3.1.4'
+
 }
 
 group = 'poc.graphql'
@@ -11,6 +13,10 @@ sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
+}
+
+jib {
+    to.image = "gcr.io/kub-demo-337910/user-service"
 }
 
 dependencies {
